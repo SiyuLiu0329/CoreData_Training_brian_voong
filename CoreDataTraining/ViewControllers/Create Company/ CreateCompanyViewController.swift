@@ -37,6 +37,12 @@ class CreateCompanyViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpNavBar()
+        setUpUI()
+    }
+    
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Some Text"
@@ -53,8 +59,6 @@ class CreateCompanyViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = ColourScheme.tableViewBackgroundColour
-        setUpNavBar()
-        setUpUI()
     }
     
     @objc private func onCancelPressed() {
@@ -71,10 +75,19 @@ class CreateCompanyViewController: UIViewController {
         }
     }
     
+    @objc private func onEditPressed() {
+        print("Edit")
+    }
+    
     private func setUpNavBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.onCancelPressed))
-        navigationController?.navigationBar.topItem?.title = "Create Company "
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(self.onSavePressed))
+        if companyToEdit != nil {
+            navigationController?.navigationBar.topItem?.title = "Edit Company"
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(self.onEditPressed))
+        } else {
+            navigationController?.navigationBar.topItem?.title = "Create Company"
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(self.onSavePressed))
+        }
     }
     
     private func setUpUI() {

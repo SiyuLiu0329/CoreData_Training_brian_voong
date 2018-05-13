@@ -22,7 +22,6 @@ class Coorinator: NSObject, BaseCoordinator {
     }
     
     var childCoordinators: [BaseCoordinator] = []
-    
     var navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
@@ -32,6 +31,7 @@ class Coorinator: NSObject, BaseCoordinator {
     func editCompany(delegate: CreateCompanyDelegate?, companyToEdit: Company) {
         let editController = CreateCompanyViewController(companyToEdit: companyToEdit)
         let navController = CustomNavigationViewController(rootViewController: editController)
+        editController.delegate = delegate
         navigationController.present(navController, animated: true, completion: nil)
     }
     
