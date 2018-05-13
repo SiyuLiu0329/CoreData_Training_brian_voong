@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct CompanyObjectFlow {
+struct CompanyDataFlow {
     let name: String
 }
