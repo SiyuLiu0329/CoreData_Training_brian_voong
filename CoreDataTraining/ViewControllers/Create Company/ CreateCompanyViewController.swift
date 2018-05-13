@@ -10,7 +10,8 @@ import UIKit
 import CoreData
 
 protocol CreateCompanyDelegate: class {
-    func addCompany(in object: CompanyObjectFlow)
+    func didAddCompany(in object: CompanyDataFlow)
+    func didEditCompany(_ company: Company, newData: CompanyDataFlow)
 }
 
 class CreateCompanyViewController: UIViewController {
@@ -69,14 +70,19 @@ class CreateCompanyViewController: UIViewController {
         guard let name = nameTextField.text else { return }
         guard !name.isEmpty else { return }
         guard let delegate = delegate else { return }
-        
         dismiss(animated: true) {
-            delegate.addCompany(in: CompanyObjectFlow(name: name))
+            delegate.didAddCompany(in: CompanyDataFlow(name: name))
         }
     }
     
     @objc private func onEditPressed() {
-        print("Edit")
+        guard let name = nameTextField.text else { return }
+        guard !name.isEmpty else { return }
+        guard let delegate = delegate else { return }
+        guard let company = companyToEdit else { return }        
+        dismiss(animated: true) {
+            delegate.didEditCompany(company, newData: CompanyDataFlow(name: name))
+        }
     }
     
     private func setUpNavBar() {

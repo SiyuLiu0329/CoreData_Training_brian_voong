@@ -91,9 +91,16 @@ extension CompaniesTableViewController {
 }
 
 extension CompaniesTableViewController: CreateCompanyDelegate {
-    func addCompany(in object: CompanyObjectFlow) {
+    func didAddCompany(in object: CompanyDataFlow) {
         model.insertCompany(in: object)
         tableView.insertRows(at: [IndexPath(row: model.numberOfCompanies - 1, section: 0)], with: .automatic)
+    }
+    
+    func didEditCompany(_ company: Company, newData: CompanyDataFlow) {
+        model.updateCompany(company, newData: newData)
+        if let index = model.companies?.index(of: company) {
+            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .middle)
+        }
     }
 }
 
