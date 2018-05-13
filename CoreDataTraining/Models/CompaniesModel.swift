@@ -50,7 +50,6 @@ class CompaniesModel {
     }
     
     func updateCompany(_ company: Company, newData: CompanyDataFlow) {
-        guard company.name != newData.name  else { return }
         company.name = newData.name
         saveContext()
     }

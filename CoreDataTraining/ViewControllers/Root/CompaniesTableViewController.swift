@@ -97,6 +97,7 @@ extension CompaniesTableViewController: CreateCompanyDelegate {
     }
     
     func didEditCompany(_ company: Company, newData: CompanyDataFlow) {
+        guard company.name != newData.name  else { return }
         model.updateCompany(company, newData: newData)
         if let index = model.companies?.index(of: company) {
             tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .middle)
