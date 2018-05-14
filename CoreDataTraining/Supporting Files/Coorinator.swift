@@ -28,8 +28,8 @@ class Coorinator: NSObject, BaseCoordinator {
         self.navigationController = navigationController
     }
     
-    func editCompany(delegate: CreateCompanyDelegate?, companyToEdit: Company) {
-        let editController = CreateCompanyViewController(companyToEdit: companyToEdit)
+    func editCompany(delegate: CreateCompanyDelegate?, tempCompany: TempCompany, companyIndex: Int) {
+        let editController = CreateCompanyViewController(companyToEdit: tempCompany, index: companyIndex)
         let navController = CustomNavigationViewController(rootViewController: editController)
         editController.delegate = delegate
         navigationController.present(navController, animated: true, completion: nil)

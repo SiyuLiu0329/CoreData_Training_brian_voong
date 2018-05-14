@@ -10,23 +10,25 @@ import UIKit
 import CoreData
 
 protocol CreateCompanyDelegate: class {
-    func didAddCompany(in object: CompanyDataFlow)
-    func didEditCompany(_ company: Company, newData: CompanyDataFlow)
+    func didAddCompany(in object: TempCompany)
+    func didEditCompany(atIndex index: Int, newData: TempCompany)
 }
 
 class CreateCompanyViewController: UIViewController {
     weak var coordinator: Coorinator?
     weak var delegate: CreateCompanyDelegate?
-    private var companyToEdit: Company?
+    private var tempComany: TempCompany?
+    private var companyIndex: Int?
     
-    init(companyToEdit: Company) {
+    init(companyToEdit: TempCompany, index: Int) {
         super.init(nibName: nil, bundle: nil)
-        self.companyToEdit = companyToEdit
+        self.tempComany = companyToEdit
+        self.companyIndex = index
         unpackCompanyData()
     }
     
     private func unpackCompanyData() {
-        guard let company = self.companyToEdit else { return }
+        guard let company = self.tempComany else { return }
         nameTextField.text = company.name
     }
     
@@ -71,7 +73,7 @@ class CreateCompanyViewController: UIViewController {
         guard !name.isEmpty else { return }
         guard let delegate = delegate else { return }
         dismiss(animated: true) {
-            delegate.didAddCompany(in: CompanyDataFlow(name: name))
+            delegate.didAddCompany(in: TempCompany(name: name))
         }
     }
     
@@ -79,15 +81,16 @@ class CreateCompanyViewController: UIViewController {
         guard let name = nameTextField.text else { return }
         guard !name.isEmpty else { return }
         guard let delegate = delegate else { return }
-        guard let company = companyToEdit else { return }        
+        guard let index = companyIndex else { return }
+//        guard tempComany.name != name else { return }
         dismiss(animated: true) {
-            delegate.didEditCompany(company, newData: CompanyDataFlow(name: name))
+            delegate.didEditCompany(atIndex: index, newData: TempCompany(name: name))
         }
     }
     
     private func setUpNavBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.onCancelPressed))
-        if companyToEdit != nil {
+        if tempComany != nil {
             navigationController?.navigationBar.topItem?.title = "Edit Company"
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(self.onEditPressed))
         } else {

@@ -83,7 +83,8 @@ extension CompaniesTableViewController {
         
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (_, indexPath) in
             guard let companies = self.model.companies else { return }
-            self.coordinator?.editCompany(delegate: self, companyToEdit: companies[indexPath.row])
+            let tempCompany = TempCompany(name: companies[indexPath.row].name!)
+            self.coordinator?.editCompany(delegate: self, tempCompany: tempCompany, companyIndex: indexPath.row)
         }
         
         return [deleteAction, editAction]
@@ -91,17 +92,14 @@ extension CompaniesTableViewController {
 }
 
 extension CompaniesTableViewController: CreateCompanyDelegate {
-    func didAddCompany(in object: CompanyDataFlow) {
+    func didAddCompany(in object: TempCompany) {
         model.insertCompany(in: object)
         tableView.insertRows(at: [IndexPath(row: model.numberOfCompanies - 1, section: 0)], with: .automatic)
     }
     
-    func didEditCompany(_ company: Company, newData: CompanyDataFlow) {
-        guard company.name != newData.name  else { return }
-        model.updateCompany(company, newData: newData)
-        if let index = model.companies?.index(of: company) {
-            tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .middle)
-        }
+    func didEditCompany(atIndex index: Int, newData: TempCompany) {
+        model.updateCompany(atIndex: index, newData: newData)
+        tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .middle)
     }
 }
 

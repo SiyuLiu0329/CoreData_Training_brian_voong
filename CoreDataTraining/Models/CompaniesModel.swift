@@ -24,14 +24,12 @@ class CompaniesModel {
     
     func deleteCompany(index: Int) {
         guard let companies = companies else { return }
-//        let context = CoreDataManager.shared.persistentContainer.viewContext // need a shared context for data to be displayed properly
         context.delete(companies[index])
         saveContext()
         fetchCompanies()
     }
     
     func fetchCompanies() {
-//        let context = CoreDataManager.shared.persistentContainer.viewContext // need a shared context for data to be displayed properly
         let fetchRequest = NSFetchRequest<Company>(entityName: "Company")
         do {
             let companies = try context.fetch(fetchRequest)
@@ -49,13 +47,13 @@ class CompaniesModel {
         }
     }
     
-    func updateCompany(_ company: Company, newData: CompanyDataFlow) {
+    func updateCompany(atIndex index: Int, newData: TempCompany) {
+        guard let company = getCompany(index: index) else { return }
         company.name = newData.name
         saveContext()
     }
     
-    func insertCompany(in object: CompanyDataFlow) {
-//        let context = CoreDataManager.shared.persistentContainer.viewContext // need a shared context for data to be displayed properly
+    func insertCompany(in object: TempCompany) {
         let company = NSEntityDescription.insertNewObject(forEntityName: "Company", into: context)
         company.setValue(object.name, forKey: "name")
         saveContext()
