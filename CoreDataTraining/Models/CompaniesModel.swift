@@ -50,12 +50,14 @@ class CompaniesModel {
     func updateCompany(atIndex index: Int, newData: TempCompany) {
         guard let company = getCompany(index: index) else { return }
         company.name = newData.name
+        company.founded = newData.date
         saveContext()
     }
     
     func insertCompany(in object: TempCompany) {
         let company = NSEntityDescription.insertNewObject(forEntityName: "Company", into: context)
         company.setValue(object.name, forKey: "name")
+        company.setValue(object.date, forKey: "founded")
         saveContext()
         fetchCompanies()
     }

@@ -23,7 +23,7 @@ class CompaniesTableViewController: UITableViewController {
     
     private func setUpTableView() {
         tableView.backgroundColor = ColourScheme.tableViewBackgroundColour
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(CompanyTableViewCell.self, forCellReuseIdentifier: cellId)
         tableView.tableFooterView = UIView()
         navigationController?.navigationBar.prefersLargeTitles = true
         model.fetchCompanies()
@@ -54,10 +54,9 @@ extension CompaniesTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CompanyTableViewCell
         if let company = model.getCompany(index: indexPath.row) {
-            print(company)
-            cell.textLabel?.text = company.name
+            cell.loadCompany(company)
         }
         return cell
     }
@@ -83,7 +82,8 @@ extension CompaniesTableViewController {
         
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (_, indexPath) in
             guard let companies = self.model.companies else { return }
-            let tempCompany = TempCompany(name: companies[indexPath.row].name!)
+            let company = companies[indexPath.row]
+            let tempCompany = TempCompany(name: company.name!, date: company.founded!)
             self.coordinator?.editCompany(delegate: self, tempCompany: tempCompany, companyIndex: indexPath.row)
         }
         

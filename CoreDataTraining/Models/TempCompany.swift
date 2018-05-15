@@ -10,4 +10,5 @@ import Foundation
 
 struct TempCompany {
     let name: String
+    let date: Date
 }
