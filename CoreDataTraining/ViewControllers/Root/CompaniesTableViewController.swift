@@ -33,7 +33,18 @@ class CompaniesTableViewController: UITableViewController {
         view.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onAddPressed))
         navigationItem.title = "Companies"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(self.onResetPressed))
         
+    }
+    
+    @objc private func onResetPressed() {
+        var indexPaths = [IndexPath]()
+        for i in 0..<model.numberOfCompanies {
+            indexPaths.append(IndexPath(row: i, section: 0))
+        }
+        model.resetDatabase()
+        tableView.deleteRows(at: indexPaths, with: .left)
+
     }
     
     
@@ -96,6 +107,19 @@ extension CompaniesTableViewController {
         }
         
         return [deleteAction, editAction]
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.text = "No companies available..."
+        label.textColor = .darkGray
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return model.isDatabaseEmpty ? 150 : 0
     }
 }
 

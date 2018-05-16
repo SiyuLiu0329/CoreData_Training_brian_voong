@@ -69,11 +69,7 @@ class Coorinator: NSObject, BaseCoordinator {
         addChildCoordinator(child: childCoordinator)
         
         presentor.present(navController, animated: true, completion: nil)
-        
     }
-    
-
-    
 }
 
 class CompanyEditorCoordinator: BaseCoordinator {

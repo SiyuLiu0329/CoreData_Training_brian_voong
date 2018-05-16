@@ -54,6 +54,11 @@ class CreateCompanyViewController: UIViewController {
         imageView.image = #imageLiteral(resourceName: "select_photo_empty")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = true // remember to do this
+        imageView.layer.cornerRadius = 50
+        imageView.clipsToBounds = true
+        imageView.layer.borderColor = UIColor.black.cgColor
+        imageView.layer.borderWidth = 2
+        imageView.contentMode = .scaleAspectFill
         return imageView
     } ()
     

@@ -13,6 +13,10 @@ import UIKit
 class CompaniesModel {
     var companies: [Company]?
     private let context = CoreDataManager.shared.persistentContainer.viewContext
+    var isDatabaseEmpty: Bool {
+        guard let companies = companies else { return true }
+        return companies.isEmpty
+    }
     
     var numberOfCompanies: Int {
         return (companies == nil) ? 0 : companies!.count
@@ -38,6 +42,16 @@ class CompaniesModel {
         } catch let fetchError {
             print(fetchError)
         }
+    }
+    
+    func resetDatabase() {
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Company.fetchRequest())
+        do {
+            try context.execute(batchDeleteRequest)
+        } catch let error {
+            fatalError("Error deleting: \(error)")
+        }
+        companies = []
     }
     
     private func saveContext() {
