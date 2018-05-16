@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 struct TempCompany {
     let name: String
     let date: Date
+    let image: UIImage
 }

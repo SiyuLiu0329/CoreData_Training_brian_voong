@@ -59,7 +59,7 @@ class CreateCompanyViewController: UIViewController {
     
     @objc private func onImageTapped(_ recogniser: UITapGestureRecognizer) {
         guard let coordinator = coordinator else { return }
-        coordinator.presentImagePicker(delegate: nil)
+        coordinator.presentImagePicker(delegate: self)
     }
     
     
@@ -74,12 +74,14 @@ class CreateCompanyViewController: UIViewController {
         guard let company = self.tempComany else { return }
         nameTextField.text = company.name
         datePicker.date = company.date
+        companyImageView.image = company.image
     }
     
     private func packCompanyData() -> TempCompany? {
         guard let name = nameTextField.text else { return nil }
         guard !name.isEmpty else { return nil }
-        return TempCompany(name: name, date: datePicker.date)
+        let image = companyImageView.image ?? #imageLiteral(resourceName: "select_photo_empty")
+        return TempCompany(name: name, date: datePicker.date, image: image)
     }
     
     init() {
@@ -104,7 +106,6 @@ class CreateCompanyViewController: UIViewController {
     
     @objc private func onCancelPressed() {
         dismiss(animated: true, completion: nil)
-        coordinator?.done()
     }
     
     @objc private func onSavePressed() {
@@ -113,7 +114,6 @@ class CreateCompanyViewController: UIViewController {
         dismiss(animated: true) {
             delegate.didAddCompany(in: data)
         }
-        coordinator?.done()
     }
     
     @objc private func onEditPressed() {
@@ -123,6 +123,10 @@ class CreateCompanyViewController: UIViewController {
         dismiss(animated: true) {
             delegate.didEditCompany(atIndex: index, newData: data)
         }
+    }
+    
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.dismiss(animated: flag, completion: completion)
         coordinator?.done()
     }
     
@@ -182,4 +186,17 @@ extension CreateCompanyViewController {
             datePicker.heightAnchor.constraint(equalToConstant: 150)
             ])
     }
+}
+
+extension CreateCompanyViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            companyImageView.image = image
+        } else if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            companyImageView.image = image
+        }
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
 }

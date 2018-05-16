@@ -22,7 +22,6 @@ extension BaseCoordinator {
     
     func removeChildCoordinator(child: BaseCoordinator) {
         childCoordinators = childCoordinators.filter({$0 !== child})
-        print(childCoordinators)
     }
     
     func addChildCoordinator(child: BaseCoordinator) {
@@ -83,6 +82,9 @@ class CompanyEditorCoordinator: BaseCoordinator {
     var presentor: CustomNavigationViewController
     func start() {}
     
+    deinit {
+        print("Child coordinator deinited: \(self)")
+    }
     
     init(presentor: CustomNavigationViewController) {
         self.presentor = presentor
@@ -91,6 +93,7 @@ class CompanyEditorCoordinator: BaseCoordinator {
     func presentImagePicker(delegate: (UIImagePickerControllerDelegate & UINavigationControllerDelegate)? ) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = delegate
+        imagePicker.allowsEditing = true
         presentor.present(imagePicker, animated: true, completion: nil)
     }
 

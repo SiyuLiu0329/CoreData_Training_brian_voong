@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 class CompaniesModel {
     var companies: [Company]?
@@ -51,6 +52,7 @@ class CompaniesModel {
         guard let company = getCompany(index: index) else { return }
         company.name = newData.name
         company.founded = newData.date
+        company.imageData = UIImageJPEGRepresentation(newData.image, 0.8)
         saveContext()
     }
     
@@ -58,6 +60,8 @@ class CompaniesModel {
         let company = NSEntityDescription.insertNewObject(forEntityName: "Company", into: context)
         company.setValue(object.name, forKey: "name")
         company.setValue(object.date, forKey: "founded")
+        let data = UIImageJPEGRepresentation(object.image, 0.8)
+        company.setValue(data, forKey: "imageData")
         saveContext()
         fetchCompanies()
     }

@@ -57,7 +57,11 @@ extension CompaniesTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CompanyTableViewCell
         if let company = model.getCompany(index: indexPath.row) {
             cell.loadCompany(company)
+            if let data = company.imageData {
+                cell.imageView?.image = UIImage(data: data)
+            }
         }
+        
         return cell
     }
     
@@ -83,7 +87,11 @@ extension CompaniesTableViewController {
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (_, indexPath) in
             guard let companies = self.model.companies else { return }
             let company = companies[indexPath.row]
-            let tempCompany = TempCompany(name: company.name!, date: company.founded!)
+            var image: UIImage? = nil
+            if let data = company.imageData {
+                image = UIImage(data: data)
+            }
+            let tempCompany = TempCompany(name: company.name!, date: company.founded!, image: image ?? #imageLiteral(resourceName: "select_photo_empty"))
             self.coordinator?.editCompany(delegate: self, tempCompany: tempCompany, companyIndex: indexPath.row)
         }
         
