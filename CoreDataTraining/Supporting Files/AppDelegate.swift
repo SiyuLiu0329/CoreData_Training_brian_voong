@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         let navController = CustomNavigationViewController()
-        coordinator = Coorinator(navigationController: navController)
+        coordinator = Coorinator(presentor: navController)
         coordinator?.start()
         window?.rootViewController = navController
         return true

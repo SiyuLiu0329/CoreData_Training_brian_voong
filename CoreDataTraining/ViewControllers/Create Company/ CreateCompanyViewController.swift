@@ -15,7 +15,7 @@ protocol CreateCompanyDelegate: class {
 }
 
 class CreateCompanyViewController: UIViewController {
-    weak var coordinator: Coorinator?
+    weak var coordinator: CompanyEditorCoordinator?
     weak var delegate: CreateCompanyDelegate?
     private var tempComany: TempCompany?
     private var companyIndex: Int?
@@ -29,7 +29,7 @@ class CreateCompanyViewController: UIViewController {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Some Text"
+        label.text = "Name:"
         label.backgroundColor = .clear
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -49,6 +49,19 @@ class CreateCompanyViewController: UIViewController {
         return view
     } ()
     
+    var companyImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = #imageLiteral(resourceName: "select_photo_empty")
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isUserInteractionEnabled = true // remember to do this
+        return imageView
+    } ()
+    
+    @objc private func onImageTapped(_ recogniser: UITapGestureRecognizer) {
+        guard let coordinator = coordinator else { return }
+        coordinator.presentImagePicker(delegate: nil)
+    }
+    
     
     init(companyToEdit: TempCompany, index: Int) {
         super.init(nibName: nil, bundle: nil)
@@ -63,7 +76,7 @@ class CreateCompanyViewController: UIViewController {
         datePicker.date = company.date
     }
     
-    private func packCompanyDate() -> TempCompany? {
+    private func packCompanyData() -> TempCompany? {
         guard let name = nameTextField.text else { return nil }
         guard !name.isEmpty else { return nil }
         return TempCompany(name: name, date: datePicker.date)
@@ -91,23 +104,26 @@ class CreateCompanyViewController: UIViewController {
     
     @objc private func onCancelPressed() {
         dismiss(animated: true, completion: nil)
+        coordinator?.done()
     }
     
     @objc private func onSavePressed() {
         guard let delegate = delegate else { return }
-        guard let data = packCompanyDate() else { return }
+        guard let data = packCompanyData() else { return }
         dismiss(animated: true) {
             delegate.didAddCompany(in: data)
         }
+        coordinator?.done()
     }
     
     @objc private func onEditPressed() {
         guard let delegate = delegate else { return }
         guard let index = companyIndex else { return }
-        guard let data = packCompanyDate() else { return }
+        guard let data = packCompanyData() else { return }
         dismiss(animated: true) {
             delegate.didEditCompany(atIndex: index, newData: data)
         }
+        coordinator?.done()
     }
     
     private func setUpNavBar() {
@@ -125,6 +141,7 @@ class CreateCompanyViewController: UIViewController {
 
 extension CreateCompanyViewController {
     private func setUpUI() {
+        companyImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onImageTapped(_:))))
         view.addSubview(contentView)
         NSLayoutConstraint.activate([
             contentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
@@ -133,9 +150,17 @@ extension CreateCompanyViewController {
             contentView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50)
             ])
         
+        contentView.addSubview(companyImageView)
+        NSLayoutConstraint.activate([
+            companyImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            companyImageView.heightAnchor.constraint(equalToConstant: 100),
+            companyImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            companyImageView.widthAnchor.constraint(equalToConstant: 100)
+            ])
+        
         contentView.addSubview(nameLabel)
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+            nameLabel.topAnchor.constraint(equalTo: companyImageView.bottomAnchor),
             nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16),
             nameLabel.widthAnchor.constraint(equalToConstant: 100),
             nameLabel.heightAnchor.constraint(equalToConstant: 50)
@@ -156,6 +181,5 @@ extension CreateCompanyViewController {
             datePicker.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             datePicker.heightAnchor.constraint(equalToConstant: 150)
             ])
-        
     }
 }
