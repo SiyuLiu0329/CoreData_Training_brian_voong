@@ -22,5 +22,4 @@ struct CoreDataManager {
         }
         return container
     } ()
-    
 }

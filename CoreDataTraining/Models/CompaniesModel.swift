@@ -30,7 +30,7 @@ class CompaniesModel {
     func deleteCompany(index: Int) {
         guard let companies = companies else { return }
         context.delete(companies[index])
-        saveContext()
+        saveContext()    
         fetchCompanies()
     }
     

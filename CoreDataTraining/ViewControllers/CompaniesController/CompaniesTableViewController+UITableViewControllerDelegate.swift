@@ -1,59 +1,13 @@
 //
-//  ViewController.swift
+//  CompaniesTableViewController+UITableViewControllerDelegate.swift
 //  CoreDataTraining
 //
-//  Created by Siyu Liu on 13/5/18.
+//  Created by Siyu Liu on 17/5/18.
 //  Copyright © 2018 Siyu Liu. All rights reserved.
 //
 
+import Foundation
 import UIKit
-
-class CompaniesTableViewController: UITableViewController {
-    private let cellId = "cellId"
-    private var tableViewDataSource: UITableViewDataSource?
-    private let model = CompaniesModel()
-    weak var coordinator: Coorinator?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUpNavigationItem()
-        setUpTableView()
-
-    }
-    
-    private func setUpTableView() {
-        tableView.backgroundColor = ColourScheme.tableViewBackgroundColour
-        tableView.register(CompanyTableViewCell.self, forCellReuseIdentifier: cellId)
-        tableView.tableFooterView = UIView()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        model.fetchCompanies()
-    }
-    
-    private func setUpNavigationItem() {
-        view.backgroundColor = .white
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onAddPressed))
-        navigationItem.title = "Companies"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(self.onResetPressed))
-        
-    }
-    
-    @objc private func onResetPressed() {
-        var indexPaths = [IndexPath]()
-        for i in 0..<model.numberOfCompanies {
-            indexPaths.append(IndexPath(row: i, section: 0))
-        }
-        model.resetDatabase()
-        tableView.deleteRows(at: indexPaths, with: .left)
-
-    }
-    
-    
-    @objc private func onAddPressed() {
-        guard coordinator != nil else { return }
-        coordinator?.createCompany(delegate: self)
-    }
-
-}
 
 extension CompaniesTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -66,13 +20,7 @@ extension CompaniesTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CompanyTableViewCell
-        if let company = model.getCompany(index: indexPath.row) {
-            cell.loadCompany(company)
-            if let data = company.imageData {
-                cell.imageView?.image = UIImage(data: data)
-            }
-        }
-        
+        cell.company = model.getCompany(index: indexPath.row)
         return cell
     }
     
@@ -122,16 +70,3 @@ extension CompaniesTableViewController {
         return model.isDatabaseEmpty ? 150 : 0
     }
 }
-
-extension CompaniesTableViewController: CreateCompanyDelegate {
-    func didAddCompany(in object: TempCompany) {
-        model.insertCompany(in: object)
-        tableView.insertRows(at: [IndexPath(row: model.numberOfCompanies - 1, section: 0)], with: .automatic)
-    }
-    
-    func didEditCompany(atIndex index: Int, newData: TempCompany) {
-        model.updateCompany(atIndex: index, newData: newData)
-        tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .middle)
-    }
-}
-

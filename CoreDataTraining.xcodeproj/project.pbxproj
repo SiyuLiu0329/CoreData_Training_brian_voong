@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		DC637E0B20A863980075EF62 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC637E0920A863980075EF62 /* DataModel.xcdatamodeld */; };
 		DC72714620AB0183001B4312 /* CompanyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC72714520AB0183001B4312 /* CompanyTableViewCell.swift */; };
+		DC9F2B6A20AD451800A4D859 /* CompaniesTableViewController+CreateCompanyViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9F2B6920AD451800A4D859 /* CompaniesTableViewController+CreateCompanyViewControllerDelegate.swift */; };
+		DC9F2B6C20AD45C700A4D859 /* CompaniesTableViewController+UITableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9F2B6B20AD45C700A4D859 /* CompaniesTableViewController+UITableViewControllerDelegate.swift */; };
 		DCC8CB0320A86C5A008C82CC /* TempCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB0220A86C5A008C82CC /* TempCompany.swift */; };
 		DCC8CB0520A875CC008C82CC /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB0420A875CC008C82CC /* CoreDataManager.swift */; };
 		DCD7879920A7F0420022B745 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7879820A7F0420022B745 /* AppDelegate.swift */; };
@@ -26,6 +28,8 @@
 /* Begin PBXFileReference section */
 		DC637E0A20A863980075EF62 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		DC72714520AB0183001B4312 /* CompanyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyTableViewCell.swift; sourceTree = "<group>"; };
+		DC9F2B6920AD451800A4D859 /* CompaniesTableViewController+CreateCompanyViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompaniesTableViewController+CreateCompanyViewControllerDelegate.swift"; sourceTree = "<group>"; };
+		DC9F2B6B20AD45C700A4D859 /* CompaniesTableViewController+UITableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompaniesTableViewController+UITableViewControllerDelegate.swift"; sourceTree = "<group>"; };
 		DCC8CB0220A86C5A008C82CC /* TempCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCompany.swift; sourceTree = "<group>"; };
 		DCC8CB0420A875CC008C82CC /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		DCD7879520A7F0420022B745 /* CoreDataTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +57,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC9F2B6820AD44D300A4D859 /* CompaniesController */ = {
+			isa = PBXGroup;
+			children = (
+				DCD7879A20A7F0420022B745 /* CompaniesTableViewController.swift */,
+				DC9F2B6920AD451800A4D859 /* CompaniesTableViewController+CreateCompanyViewControllerDelegate.swift */,
+				DC9F2B6B20AD45C700A4D859 /* CompaniesTableViewController+UITableViewControllerDelegate.swift */,
+			);
+			path = CompaniesController;
+			sourceTree = "<group>";
+		};
 		DCD7878C20A7F0420022B745 = {
 			isa = PBXGroup;
 			children = (
@@ -97,8 +111,10 @@
 		DCD787B820A81E850022B745 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				DCD787C620A829E50022B745 /* Root */,
-				DCD787C420A829B50022B745 /* Create Company */,
+				DCD787B120A7F7550022B745 /* CustomNavigationViewController.swift */,
+				DC9F2B6820AD44D300A4D859 /* CompaniesController */,
+				DC72714520AB0183001B4312 /* CompanyTableViewCell.swift */,
+				DCD787C020A829780022B745 /*  CreateCompanyViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -111,24 +127,6 @@
 				DCC8CB0220A86C5A008C82CC /* TempCompany.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		DCD787C420A829B50022B745 /* Create Company */ = {
-			isa = PBXGroup;
-			children = (
-				DCD787C020A829780022B745 /*  CreateCompanyViewController.swift */,
-			);
-			path = "Create Company";
-			sourceTree = "<group>";
-		};
-		DCD787C620A829E50022B745 /* Root */ = {
-			isa = PBXGroup;
-			children = (
-				DCD787B120A7F7550022B745 /* CustomNavigationViewController.swift */,
-				DCD7879A20A7F0420022B745 /* CompaniesTableViewController.swift */,
-				DC72714520AB0183001B4312 /* CompanyTableViewCell.swift */,
-			);
-			path = Root;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +203,7 @@
 				DCD7879B20A7F0420022B745 /* CompaniesTableViewController.swift in Sources */,
 				DCD7879920A7F0420022B745 /* AppDelegate.swift in Sources */,
 				DCD787C220A829780022B745 /*  CreateCompanyViewController.swift in Sources */,
+				DC9F2B6A20AD451800A4D859 /* CompaniesTableViewController+CreateCompanyViewControllerDelegate.swift in Sources */,
 				DCD787AE20A7F5EE0022B745 /* ColourScheme.swift in Sources */,
 				DC72714620AB0183001B4312 /* CompanyTableViewCell.swift in Sources */,
 				DCC8CB0320A86C5A008C82CC /* TempCompany.swift in Sources */,
@@ -212,6 +211,7 @@
 				DCD787B720A81B450022B745 /* Coorinator.swift in Sources */,
 				DC637E0B20A863980075EF62 /* DataModel.xcdatamodeld in Sources */,
 				DCC8CB0520A875CC008C82CC /* CoreDataManager.swift in Sources */,
+				DC9F2B6C20AD45C700A4D859 /* CompaniesTableViewController+UITableViewControllerDelegate.swift in Sources */,
 				DCD787B220A7F7550022B745 /* CustomNavigationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
