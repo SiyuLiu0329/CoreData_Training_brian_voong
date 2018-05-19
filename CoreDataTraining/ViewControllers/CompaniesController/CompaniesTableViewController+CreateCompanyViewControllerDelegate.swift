@@ -13,10 +13,16 @@ extension CompaniesTableViewController: CreateCompanyDelegate {
     func didAddCompany(in object: TempCompany) {
         model.insertCompany(in: object)
         tableView.insertRows(at: [IndexPath(row: model.numberOfCompanies - 1, section: 0)], with: .automatic)
+        reloadHeader()
     }
     
     func didEditCompany(atIndex index: Int, newData: TempCompany) {
         model.updateCompany(atIndex: index, newData: newData)
         tableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .middle)
+    }
+    
+    func reloadHeader() {
+        let headerView = tableView.headerView(forSection: 0)
+        headerView?.textLabel?.text = tableView(tableView, titleForHeaderInSection: 0)
     }
 }

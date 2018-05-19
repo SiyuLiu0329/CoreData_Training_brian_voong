@@ -40,19 +40,24 @@ extension CompaniesTableViewController {
         return 60
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        return view
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let count = model.numberOfCompanies
+        if count == 0 {
+            return ""
+        }
+        
+        return "\(count) " + (count == 1 ? "Company" : "Companies")
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 30
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
             self.model.deleteCompany(index: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.reloadHeader()
         }
         
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (_, indexPath) in

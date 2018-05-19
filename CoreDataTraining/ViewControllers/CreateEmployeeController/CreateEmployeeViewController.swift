@@ -19,6 +19,7 @@ class CreateEmployeeViewController: UIViewController {
     
     private func setUpNavBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.onCancelPressed))
+        navigationItem.title = "Create Employee"
     }
     
     @objc private func onCancelPressed() {
