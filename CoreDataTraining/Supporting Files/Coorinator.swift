@@ -77,8 +77,9 @@ class Coorinator: NSObject, BaseCoordinator {
         presentor.pushViewController(vc, animated: true)
     }
     
-    func createEmployee() {
+    func createEmployee(delegate: CreateEmployeeControllerDelegate) {
         let editController = CreateEmployeeViewController()
+        editController.delegate = delegate
         let navController = CustomNavigationViewController(rootViewController: editController)
         let childCoordinator = EmployeeEditorCoordinator(presentor: navController)
         editController.coordinator = childCoordinator

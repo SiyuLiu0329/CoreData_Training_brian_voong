@@ -11,11 +11,25 @@ import CoreData
 
 class EmployeesModel {
     let context = ContextManager.shared.persistentContainer.viewContext
+    var employees = [Employee]()
     
-    func createEmployee(employee: TempEmployee) {
+    var numberOfEmployees: Int {
+        return employees.count
+    }
+    
+    func insertEmployee(employee: TempEmployee) {
         let e = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: context)
         e.setValue(employee.name, forKey: "name")
         saveContext()
+        fetchEmployees()
+    }
+    
+    func fetchEmployees() {
+        do {
+            employees = try context.fetch(Employee.fetchRequest())
+        } catch let error {
+            print(error)
+        }
     }
     
     private func saveContext() {

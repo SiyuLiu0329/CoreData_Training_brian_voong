@@ -8,10 +8,14 @@
 
 import UIKit
 
+protocol CreateEmployeeControllerDelegate: class {
+    func didAddEmployee(employeeData: TempEmployee)
+}
+
 class CreateEmployeeViewController: UIViewController {
     weak var coordinator: EmployeeEditorCoordinator?
+    weak var delegate: CreateEmployeeControllerDelegate?
     let contentView: EmployeeEditorView = EmployeeEditorView()
-    private let model = EmployeesModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +44,10 @@ class CreateEmployeeViewController: UIViewController {
     @objc private func onSavePressed() {
         guard let name = contentView.nameTextField.text else { return }
         guard !name.isEmpty  else { return }
-        model.createEmployee(employee: TempEmployee(name: name))
-        dismiss(animated: true, completion: nil)
+        guard let delegate = delegate else { return }
+        dismiss(animated: true) {
+            delegate.didAddEmployee(employeeData: TempEmployee(name: name))
+        }
     }
     
     @objc private func onCancelPressed() {
