@@ -10,8 +10,8 @@ import Foundation
 import CoreData
 
 
-struct CoreDataManager {
-    static let shared = CoreDataManager()
+struct ContextManager {
+    static let shared = ContextManager()
     
     let persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "DataModel")

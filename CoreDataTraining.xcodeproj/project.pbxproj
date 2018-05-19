@@ -11,13 +11,16 @@
 		DC01824120B0281E0021D6E4 /* CreateEmployeeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01824020B0281E0021D6E4 /* CreateEmployeeViewController.swift */; };
 		DC01824420B028760021D6E4 /* CompanyEditorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01824320B028760021D6E4 /* CompanyEditorCoordinator.swift */; };
 		DC01824620B028970021D6E4 /* EmployeeEditorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01824520B028970021D6E4 /* EmployeeEditorCoordinator.swift */; };
+		DC01824920B030560021D6E4 /* EmployeeEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01824820B030560021D6E4 /* EmployeeEditorView.swift */; };
+		DC01824B20B037EC0021D6E4 /* EmployeesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01824A20B037EC0021D6E4 /* EmployeesModel.swift */; };
+		DC01824D20B038D70021D6E4 /* TempEmployee.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC01824C20B038D70021D6E4 /* TempEmployee.swift */; };
 		DC637E0B20A863980075EF62 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DC637E0920A863980075EF62 /* DataModel.xcdatamodeld */; };
 		DC72714620AB0183001B4312 /* CompanyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC72714520AB0183001B4312 /* CompanyTableViewCell.swift */; };
 		DC9F2B6A20AD451800A4D859 /* CompaniesTableViewController+CreateCompanyViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9F2B6920AD451800A4D859 /* CompaniesTableViewController+CreateCompanyViewControllerDelegate.swift */; };
 		DC9F2B6C20AD45C700A4D859 /* CompaniesTableViewController+UITableViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9F2B6B20AD45C700A4D859 /* CompaniesTableViewController+UITableViewControllerDelegate.swift */; };
 		DC9F2B6E20AD4AF400A4D859 /* EmployeesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9F2B6D20AD4AF400A4D859 /* EmployeesTableViewController.swift */; };
 		DCC8CB0320A86C5A008C82CC /* TempCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB0220A86C5A008C82CC /* TempCompany.swift */; };
-		DCC8CB0520A875CC008C82CC /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB0420A875CC008C82CC /* CoreDataManager.swift */; };
+		DCC8CB0520A875CC008C82CC /* ContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC8CB0420A875CC008C82CC /* ContextManager.swift */; };
 		DCD7879920A7F0420022B745 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7879820A7F0420022B745 /* AppDelegate.swift */; };
 		DCD7879B20A7F0420022B745 /* CompaniesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD7879A20A7F0420022B745 /* CompaniesTableViewController.swift */; };
 		DCD787A020A7F0430022B745 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCD7879F20A7F0430022B745 /* Assets.xcassets */; };
@@ -34,13 +37,16 @@
 		DC01824020B0281E0021D6E4 /* CreateEmployeeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEmployeeViewController.swift; sourceTree = "<group>"; };
 		DC01824320B028760021D6E4 /* CompanyEditorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyEditorCoordinator.swift; sourceTree = "<group>"; };
 		DC01824520B028970021D6E4 /* EmployeeEditorCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeEditorCoordinator.swift; sourceTree = "<group>"; };
+		DC01824820B030560021D6E4 /* EmployeeEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeEditorView.swift; sourceTree = "<group>"; };
+		DC01824A20B037EC0021D6E4 /* EmployeesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesModel.swift; sourceTree = "<group>"; };
+		DC01824C20B038D70021D6E4 /* TempEmployee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempEmployee.swift; sourceTree = "<group>"; };
 		DC637E0A20A863980075EF62 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		DC72714520AB0183001B4312 /* CompanyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyTableViewCell.swift; sourceTree = "<group>"; };
 		DC9F2B6920AD451800A4D859 /* CompaniesTableViewController+CreateCompanyViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompaniesTableViewController+CreateCompanyViewControllerDelegate.swift"; sourceTree = "<group>"; };
 		DC9F2B6B20AD45C700A4D859 /* CompaniesTableViewController+UITableViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompaniesTableViewController+UITableViewControllerDelegate.swift"; sourceTree = "<group>"; };
 		DC9F2B6D20AD4AF400A4D859 /* EmployeesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesTableViewController.swift; sourceTree = "<group>"; };
 		DCC8CB0220A86C5A008C82CC /* TempCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempCompany.swift; sourceTree = "<group>"; };
-		DCC8CB0420A875CC008C82CC /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		DCC8CB0420A875CC008C82CC /* ContextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextManager.swift; sourceTree = "<group>"; };
 		DCD7879520A7F0420022B745 /* CoreDataTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCD7879820A7F0420022B745 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCD7879A20A7F0420022B745 /* CompaniesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesTableViewController.swift; sourceTree = "<group>"; };
@@ -93,8 +99,17 @@
 			isa = PBXGroup;
 			children = (
 				DC01824020B0281E0021D6E4 /* CreateEmployeeViewController.swift */,
+				DC01824820B030560021D6E4 /* EmployeeEditorView.swift */,
 			);
 			path = CreateEmployeeController;
+			sourceTree = "<group>";
+		};
+		DC01824720B030050021D6E4 /* Reusable */ = {
+			isa = PBXGroup;
+			children = (
+				DCD787B120A7F7550022B745 /* CustomNavigationViewController.swift */,
+			);
+			path = Reusable;
 			sourceTree = "<group>";
 		};
 		DC9F2B6820AD44D300A4D859 /* CompaniesController */ = {
@@ -128,7 +143,7 @@
 			children = (
 				DC01823B20B021970021D6E4 /* Main.storyboard */,
 				DCD787AC20A7F5C90022B745 /* Supporting Files */,
-				DCD787B820A81E850022B745 /* ViewControllers */,
+				DCD787B820A81E850022B745 /* Views & Controllers */,
 				DCD787B920A81E930022B745 /* Models */,
 				DCD787A420A7F0430022B745 /* Info.plist */,
 			);
@@ -145,30 +160,32 @@
 				DCD7879F20A7F0430022B745 /* Assets.xcassets */,
 				DCD787A120A7F0430022B745 /* LaunchScreen.storyboard */,
 				DCD787AD20A7F5EE0022B745 /* ColourScheme.swift */,
-				DCC8CB0420A875CC008C82CC /* CoreDataManager.swift */,
+				DCC8CB0420A875CC008C82CC /* ContextManager.swift */,
 				DC01823E20B022C60021D6E4 /* Cells */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		DCD787B820A81E850022B745 /* ViewControllers */ = {
+		DCD787B820A81E850022B745 /* Views & Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DCD787B120A7F7550022B745 /* CustomNavigationViewController.swift */,
+				DC01824720B030050021D6E4 /* Reusable */,
 				DC9F2B6820AD44D300A4D859 /* CompaniesController */,
 				DC01823F20B022D30021D6E4 /* CreateCompanyController */,
 				DC01823D20B022AD0021D6E4 /* EmployeesController */,
 				DC01824220B028230021D6E4 /* CreateEmployeeController */,
 			);
-			path = ViewControllers;
+			path = "Views & Controllers";
 			sourceTree = "<group>";
 		};
 		DCD787B920A81E930022B745 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				DCD787BC20A81F920022B745 /* CompaniesModel.swift */,
+				DC01824A20B037EC0021D6E4 /* EmployeesModel.swift */,
 				DC637E0920A863980075EF62 /* DataModel.xcdatamodeld */,
 				DCC8CB0220A86C5A008C82CC /* TempCompany.swift */,
+				DC01824C20B038D70021D6E4 /* TempEmployee.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -251,14 +268,17 @@
 				DCD787AE20A7F5EE0022B745 /* ColourScheme.swift in Sources */,
 				DC72714620AB0183001B4312 /* CompanyTableViewCell.swift in Sources */,
 				DCC8CB0320A86C5A008C82CC /* TempCompany.swift in Sources */,
+				DC01824D20B038D70021D6E4 /* TempEmployee.swift in Sources */,
+				DC01824B20B037EC0021D6E4 /* EmployeesModel.swift in Sources */,
 				DCD787BD20A81F920022B745 /* CompaniesModel.swift in Sources */,
 				DC01824120B0281E0021D6E4 /* CreateEmployeeViewController.swift in Sources */,
 				DCD787B720A81B450022B745 /* Coorinator.swift in Sources */,
 				DC9F2B6E20AD4AF400A4D859 /* EmployeesTableViewController.swift in Sources */,
 				DC01824420B028760021D6E4 /* CompanyEditorCoordinator.swift in Sources */,
 				DC637E0B20A863980075EF62 /* DataModel.xcdatamodeld in Sources */,
-				DCC8CB0520A875CC008C82CC /* CoreDataManager.swift in Sources */,
+				DCC8CB0520A875CC008C82CC /* ContextManager.swift in Sources */,
 				DC01824620B028970021D6E4 /* EmployeeEditorCoordinator.swift in Sources */,
+				DC01824920B030560021D6E4 /* EmployeeEditorView.swift in Sources */,
 				DC9F2B6C20AD45C700A4D859 /* CompaniesTableViewController+UITableViewControllerDelegate.swift in Sources */,
 				DCD787B220A7F7550022B745 /* CustomNavigationViewController.swift in Sources */,
 			);

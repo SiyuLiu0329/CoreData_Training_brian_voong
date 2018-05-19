@@ -12,7 +12,7 @@ import UIKit
 
 class CompaniesModel {
     var companies: [Company]?
-    private let context = CoreDataManager.shared.persistentContainer.viewContext
+    private let context = ContextManager.shared.persistentContainer.viewContext
     var isDatabaseEmpty: Bool {
         guard let companies = companies else { return true }
         return companies.isEmpty
