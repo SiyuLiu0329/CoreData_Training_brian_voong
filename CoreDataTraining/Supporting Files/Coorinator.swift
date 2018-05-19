@@ -70,28 +70,22 @@ class Coorinator: NSObject, BaseCoordinator {
         
         presentor.present(navController, animated: true, completion: nil)
     }
+    
+    func showEmployees(for company: TempCompany) {
+        let vc = EmployeesTableViewController(company: company)
+        vc.coordinator = self
+        presentor.pushViewController(vc, animated: true)
+    }
+    
+    func createEmployee() {
+        let editController = CreateEmployeeViewController()
+        let navController = CustomNavigationViewController(rootViewController: editController)
+        let childCoordinator = EmployeeEditorCoordinator(presentor: navController)
+        editController.coordinator = childCoordinator
+        addChildCoordinator(child: childCoordinator)
+        presentor.present(navController, animated: true, completion: nil)
+    }
 }
 
-class CompanyEditorCoordinator: BaseCoordinator {
-    var childCoordinators: [BaseCoordinator] = []
-    var parentCoordinator: BaseCoordinator?
-    var presentor: CustomNavigationViewController
-    func start() {}
-    
-    deinit {
-        print("Child coordinator deinited: \(self)")
-    }
-    
-    init(presentor: CustomNavigationViewController) {
-        self.presentor = presentor
-    }
-    
-    func presentImagePicker(delegate: (UIImagePickerControllerDelegate & UINavigationControllerDelegate)? ) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = delegate
-        imagePicker.allowsEditing = true
-        presentor.present(imagePicker, animated: true, completion: nil)
-    }
 
-}
 

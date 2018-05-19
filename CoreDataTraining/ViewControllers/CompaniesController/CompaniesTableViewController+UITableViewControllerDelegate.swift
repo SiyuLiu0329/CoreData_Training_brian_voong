@@ -10,6 +10,18 @@ import Foundation
 import UIKit
 
 extension CompaniesTableViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let company = model.getCompany(index: indexPath.row) else { return }
+        
+        guard let name = company.name,
+            let date = company.founded,
+            let imageData = company.imageData,
+            let image = UIImage(data: imageData) else { return }
+        
+        let tempCompany = TempCompany(name: name, date: date, image: image)
+        coordinator?.showEmployees(for: tempCompany)
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
