@@ -18,8 +18,11 @@ class EmployeesModel {
     }
     
     func insertEmployee(employee: TempEmployee) {
-        let e = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: context)
-        e.setValue(employee.name, forKey: "name")
+        let emp = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: context) as! Employee
+        let empInfo = NSEntityDescription.insertNewObject(forEntityName: "EmployeeInfo", into: context) as! EmployeeInfo
+        emp.name = employee.name
+        empInfo.taxId = "456"
+        emp.employeeInformation = empInfo
         saveContext()
         fetchEmployees()
     }

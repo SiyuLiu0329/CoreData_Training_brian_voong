@@ -20,7 +20,10 @@ extension EmployeesTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = model.employees[indexPath.row].name
+        if let taxId = model.employees[indexPath.row].employeeInformation?.taxId,
+            let name = model.employees[indexPath.row].name {
+            cell.textLabel?.text = "\(name): \(taxId)"
+        }
         return cell
     }
     
