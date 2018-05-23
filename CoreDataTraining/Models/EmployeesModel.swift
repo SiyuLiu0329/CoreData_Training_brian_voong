@@ -12,6 +12,11 @@ import CoreData
 class EmployeesModel {
     let context = ContextManager.shared.persistentContainer.viewContext
     var employees = [Employee]()
+    var company: Company
+    
+    init(for company: Company) {
+        self.company = company
+    }
     
     var numberOfEmployees: Int {
         return employees.count
@@ -23,16 +28,14 @@ class EmployeesModel {
         emp.name = employee.name
         empInfo.taxId = "456"
         emp.employeeInformation = empInfo
+        emp.company = company
+        
         saveContext()
         fetchEmployees()
     }
     
     func fetchEmployees() {
-        do {
-            employees = try context.fetch(Employee.fetchRequest())
-        } catch let error {
-            print(error)
-        }
+        employees = company.employees?.allObjects as! [Employee]
     }
     
     private func saveContext() {

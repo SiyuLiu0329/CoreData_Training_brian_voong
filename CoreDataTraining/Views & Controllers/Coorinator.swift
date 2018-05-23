@@ -71,7 +71,7 @@ class Coorinator: NSObject, BaseCoordinator {
         presentor.present(navController, animated: true, completion: nil)
     }
     
-    func showEmployees(for company: TempCompany) {
+    func showEmployees(for company: Company) {
         let vc = EmployeesTableViewController(company: company)
         vc.coordinator = self
         presentor.pushViewController(vc, animated: true)

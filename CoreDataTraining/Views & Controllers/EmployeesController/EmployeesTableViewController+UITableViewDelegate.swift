@@ -11,7 +11,8 @@ import UIKit
 
 extension EmployeesTableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model.numberOfEmployees
+        guard let number = model?.numberOfEmployees else { return 0 }
+        return number
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -20,7 +21,8 @@ extension EmployeesTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        if let taxId = model.employees[indexPath.row].employeeInformation?.taxId,
+        
+        if let model = model, let taxId = model.employees[indexPath.row].employeeInformation?.taxId,
             let name = model.employees[indexPath.row].name {
             cell.textLabel?.text = "\(name): \(taxId)"
         }

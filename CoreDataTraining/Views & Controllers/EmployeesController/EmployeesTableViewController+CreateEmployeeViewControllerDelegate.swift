@@ -10,7 +10,9 @@ import Foundation
 
 extension EmployeesTableViewController: CreateEmployeeControllerDelegate {
     func didAddEmployee(employeeData: TempEmployee) {
+        guard let model = model else { return }
         model.insertEmployee(employee: employeeData)
-        tableView.insertRows(at: [IndexPath(row: model.numberOfEmployees - 1, section: 0)], with: .automatic)
+        tableView.reloadData()
+//        tableView.insertRows(at: [IndexPath(row: model.numberOfEmployees - 1, section: 0)], with: .automatic)
     }
 }

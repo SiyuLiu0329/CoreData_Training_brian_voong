@@ -159,8 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				DC01823B20B021970021D6E4 /* Main.storyboard */,
-				DC01824320B028760021D6E4 /* CompanyEditorCoordinator.swift */,
-				DC01824520B028970021D6E4 /* EmployeeEditorCoordinator.swift */,
 				DCD7879820A7F0420022B745 /* AppDelegate.swift */,
 				DCD7879F20A7F0430022B745 /* Assets.xcassets */,
 				DCD787A120A7F0430022B745 /* LaunchScreen.storyboard */,
@@ -175,6 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				DCD787B620A81B450022B745 /* Coorinator.swift */,
+				DC01824320B028760021D6E4 /* CompanyEditorCoordinator.swift */,
+				DC01824520B028970021D6E4 /* EmployeeEditorCoordinator.swift */,
 				DC01824720B030050021D6E4 /* Reusable */,
 				DC9F2B6820AD44D300A4D859 /* CompaniesController */,
 				DC01823F20B022D30021D6E4 /* CreateCompanyController */,

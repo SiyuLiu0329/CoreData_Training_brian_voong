@@ -9,28 +9,27 @@
 import UIKit
 
 class EmployeesTableViewController: UITableViewController {
-    
-    var company: TempCompany?
+
     let cellId = "cellId"
     weak var coordinator: Coorinator?
-    let model = EmployeesModel()
+    var model: EmployeesModel?
     
-    init(company: TempCompany) {
+    init(company: Company) {
         super.init(nibName: nil, bundle: nil)
-        self.company = company
+        model = EmployeesModel(for: company)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         tableView.backgroundColor = ColourScheme.tableViewBackgroundColour
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        model.fetchEmployees()
+        model?.fetchEmployees()
         setUpNavBar()
     }
 
     private func setUpNavBar() {
-        guard let company = company else { return }
-        navigationItem.title = company.name
+        guard let model = model else { return }
+        navigationItem.title = model.company.name
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(self.onAddPressed))
     }
     
