@@ -45,8 +45,10 @@ class CreateEmployeeViewController: UIViewController {
         guard let name = contentView.nameTextField.text else { return }
         guard !name.isEmpty  else { return }
         guard let delegate = delegate else { return }
+        guard let selectedEmployeeType = contentView.selectedEmpolyeeType else { return }
+        print(selectedEmployeeType)
         dismiss(animated: true) {
-            delegate.didAddEmployee(employeeData: TempEmployee(name: name))
+            delegate.didAddEmployee(employeeData: TempEmployee(name: name, birthday: self.contentView.birthday, type: selectedEmployeeType))
         }
     }
     

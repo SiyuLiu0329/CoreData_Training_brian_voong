@@ -10,4 +10,6 @@ import Foundation
 
 struct TempEmployee {
     let name: String
+    let birthday: Date
+    let type: String
 }

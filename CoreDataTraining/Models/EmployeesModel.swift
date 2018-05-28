@@ -11,15 +11,11 @@ import CoreData
 
 class EmployeesModel {
     let context = ContextManager.shared.persistentContainer.viewContext
-    var employees = [Employee]()
+    var allEmployees: [(String, [Employee])] = []
     var company: Company
     
     init(for company: Company) {
         self.company = company
-    }
-    
-    var numberOfEmployees: Int {
-        return employees.count
     }
     
     func insertEmployee(employee: TempEmployee) {
@@ -27,15 +23,27 @@ class EmployeesModel {
         let empInfo = NSEntityDescription.insertNewObject(forEntityName: "EmployeeInfo", into: context) as! EmployeeInfo
         emp.name = employee.name
         empInfo.taxId = "456"
+        empInfo.birthday = employee.birthday
         emp.employeeInformation = empInfo
         emp.company = company
+        emp.type = employee.type
         
         saveContext()
         fetchEmployees()
     }
     
     func fetchEmployees() {
-        employees = company.employees?.allObjects as! [Employee]
+        allEmployees = []
+        let employees = company.employees?.allObjects as! [Employee]
+        employees.forEach { (emp) in
+            let type = emp.type ?? "Null"
+            if let i = allEmployees.index(where: {$0.0 == type}) {
+                allEmployees[i].1.append(emp)
+            } else {
+                allEmployees.insert((type, [emp]), at: 0)
+            }
+            
+        }
     }
     
     private func saveContext() {
