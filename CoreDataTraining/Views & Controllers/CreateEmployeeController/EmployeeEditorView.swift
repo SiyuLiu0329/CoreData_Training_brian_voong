@@ -29,7 +29,7 @@ class EmployeeEditorView: UIView {
     }()
     
     let segmentedControl: UISegmentedControl = {
-        let segControl = UISegmentedControl(items: ["Executive", "Senior", "Staff"])
+        let segControl = UISegmentedControl(items: ["Executive", "Senior", "Staff", "Intern"])
         segControl.translatesAutoresizingMaskIntoConstraints = false
         segControl.tintColor = ColourScheme.navigationBarColour
         return segControl
